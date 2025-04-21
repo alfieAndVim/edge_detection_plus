@@ -17,7 +17,9 @@ class ScanPhotoViewController: UIViewController, ImageScannerControllerDelegate,
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
         
-        _result!(false)
+        if let result = self._result {
+            result(false)
+        }
         dismiss(animated: true)
     }
     
