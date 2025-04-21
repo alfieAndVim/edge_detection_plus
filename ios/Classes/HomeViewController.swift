@@ -66,7 +66,9 @@ class HomeViewController: UIViewController, ImageScannerControllerDelegate {
     @objc private func cancelImageScannerController() {
         hideButtons()
         
-        _result!(false)
+        if let result = self._result {
+            result(false)
+        }
         cameraController?.dismiss(animated: true)
         dismiss(animated: true)
     }
@@ -119,7 +121,9 @@ class HomeViewController: UIViewController, ImageScannerControllerDelegate {
     
     func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
         print(error)
-        _result!(false)
+        if let result = self._result {
+            _result(false)
+        }
         self.hideButtons()
         self.dismiss(animated: true)
     }
@@ -139,7 +143,10 @@ class HomeViewController: UIViewController, ImageScannerControllerDelegate {
         scanner.dismiss(animated: true)
         self.hideButtons()
         
-        _result!(false)
+        if let result = self._result {
+            _result(false)
+        }
+
         self.dismiss(animated: true)
     }
     

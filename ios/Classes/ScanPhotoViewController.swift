@@ -68,7 +68,9 @@ class ScanPhotoViewController: UIViewController, ImageScannerControllerDelegate,
     
     func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
         print(error)
-        _result!(false)
+        if let result = self._result {
+            _result(false)
+        }
         self.dismiss(animated: true)
     }
     
@@ -86,7 +88,9 @@ class ScanPhotoViewController: UIViewController, ImageScannerControllerDelegate,
     func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
         // Your ViewController is responsible for dismissing the ImageScannerController
         scanner.dismiss(animated: true)
-        _result!(false)
+        if let result = self._result {
+            _result(false)
+        }
         self.dismiss(animated: true)
     }
     
